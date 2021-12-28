@@ -1,4 +1,4 @@
-# gmj-laravelblock2form
+# gmj-laravel_block2_form
 
 Laravel Block for backend and frontend - need tailwindcss support
 
@@ -11,6 +11,6 @@ php artisan migrate
 
 php artisan db:seed --class=LaravelBlock2FormSeeder
 
-package for test
-composer.json#autoload-dev#psr-4: "GMJ\\LaravelBlock2Form\\": "package/laravel_block2_form/src/",
+package for test<br/>
+composer.json#autoload-dev#psr-4: "GMJ\\LaravelBlock2Form\\": "package/laravel_block2_form/src/",<br/>
 config: GMJ\LaravelBlock2Form\LaravelBlock2FormServiceProvider::class,
