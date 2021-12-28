@@ -10,3 +10,7 @@ php artisan vendor:publish --provider="GMJ\LaravelBlock2Form\LaravelBlock2FormSe
 php artisan migrate
 
 php artisan db:seed --class=LaravelBlock2FormSeeder
+
+package for test
+composer.json#autoload-dev#psr-4: "GMJ\\LaravelBlock2Form\\": "package/laravel_block2_form/src/",
+config: GMJ\LaravelBlock2Form\LaravelBlock2FormServiceProvider::class,
