@@ -3,30 +3,54 @@
         <div>
             {!! $collection->getTranslation("text", $locale) !!}
         </div>
-        <form method="POST" id="laravel_block2_form_{{$element_id}}_form" class="flex flex-wrap px-4 mt-6" action="{{ route("form.submit", $collection->form)}}">
+        <form method="POST" id="laravel_block2_form_{{$element_id}}_form" class="mt-6" action="{{ route("form.submit", $collection->form)}}">
             @csrf
             <input type="hidden" name="form_id" value="{{ $collection->form->id }}" />
             @foreach ($collection->form->fields as $field)
                 @switch($field->type)
                     @case('text')
-                        <div class="px-4 mb-4">
-                            <input type="text" name="{{ $field->name }}" placeholder="{{ $field->getTranslation('placeholder', $locale)}}" class="rounded-md w-full p-2 focus:outline-none" style="background-color:rgba(255,255,255,0.9);" />
+                        <div class="mb-4">
+                            <div class>
+                                <label for="{{ $field->name}}">
+                                    {{ $field->getTranslation('label', $locale) }}
+                                </label>
+                            </div>
+                            <input
+                                type="text"
+                                id="{{ $field->name }}"
+                                name="{{ $field->name }}"
+                                class="border border-gray-300 rounded-md w-full p-2 focus:outline-none mt-2" />
                             @error($field->name)
                                 <div class="text-red-600">{{ $message }}</div>
                             @enderror
                         </div>
                         @break
                     @case('textarea')
-                        <div class="px-4 mb-4">
-                            <textarea name="{{ $field->name }}" id="" cols="30" rows="10" placeholder="{{ $field->getTranslation("placeholder", $locale) }}" class="rounded-md w-full p-2 focus:outline-none" style="background-color:rgba(255,255,255,0.9)"></textarea>
+                        <div class="mb-4">
+                            <div class>
+                                <label for="{{ $field->name}}">
+                                    {{ $field->getTranslation('label', $locale) }}
+                                </label>
+                            </div>
+                            <textarea
+                                id="{{ $field->name }}"
+                                name="{{ $field->name }}"
+                                cols="30"
+                                rows="10"
+                                class="border border-gray-300 rounded-md w-full p-2 focus:outline-none mt-2"
+                            ></textarea>
                             @error($field->name)
-                            <div class="text-red-600">{{ $message }}</div>
+                                <div class="text-red-600">{{ $message }}</div>
                             @enderror
                         </div>
                         @break
                     @case('select')
-                        <div class="px-4 mb-4">
-                            <select name="{{ $field->name }}" id="" class="appearance-none rounded-md w-full p-2 focus:outline-none text-gray-600" style="background-color:rgba(255,255,255,0.9)">
+                        <div class="mb-4">
+
+                            <select
+                                name="{{ $field->name }}"
+                                id=""
+                                class="appearance-none rounded-md w-full p-2 focus:outline-none text-gray-600">
                                 <option value="">-- {{ $field->getTranslation("placeholder", $locale) }} --</option>
                                 @foreach ($field->options as $option)
                                     <option value="{{ $option->getTranslation("value", $locale) }}">{{ $option->getTranslation("value", $locale) }}</option>
@@ -42,7 +66,7 @@
                 @endswitch
             @endforeach
             <div class="w-full mt-4">
-                <div class="px-4 text-right">
+                <div class="text-right">
                     <button type="button" id="laravel_block2_form_{{$element_id}}_submit" class="px-6 py-2 cursor-pointer main-btn-bg-color rounded-lg text-white">
                         {{ $collection->form->getTranslation("submit", $locale) }}
                     </button>
